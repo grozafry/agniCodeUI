@@ -6,7 +6,7 @@ import PullRequestDetail from './PullRequestDetail';
 import fetchWithAuth from './fetchWithAuth'; // Import the fetchWithAuth utility
 
 // API base URL
-const API_BASE_URL = 'http://127.0.0.1:5000/';
+const API_BASE_URL = 'http://43.204.130.30:7000/';
 
 const App = () => {
   const [view, setView] = useState('login');

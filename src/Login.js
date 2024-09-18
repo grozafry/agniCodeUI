@@ -8,7 +8,7 @@ const Login = ({ setToken, setView }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://127.0.0.1:5000/auth/login', {
+      const response = await fetch('http://43.204.130.30:7000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
