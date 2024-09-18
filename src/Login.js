@@ -102,6 +102,7 @@ const Login = ({ setToken, setParentView, setAuthView }) => {
 const Signup = ({ setAuthView }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [organisationName, setOrganisationName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -119,7 +120,7 @@ const Signup = ({ setAuthView }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username, email, password, organisationName }),
       });
 
       if (response.status === 201) {
@@ -177,6 +178,16 @@ const Signup = ({ setAuthView }) => {
                 placeholder="Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Organisation Name"
+                value={organisationName}
+                onChange={(e) => setOrganisationName(e.target.value)}
                 className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
                 required
               />
