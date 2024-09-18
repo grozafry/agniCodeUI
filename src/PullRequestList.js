@@ -18,24 +18,27 @@ const PullRequestList = ({ setView, setSelectedPR, repoId }) => {
   useEffect(() => {
     fetchPullRequests();
   }, [repoId]);
+
   return (
     <div className="p-4">
-      <h1 className="text-xl font-medium mb-4 text-white">Pull Requests</h1>
+      <h1 className="text-xl font-medium mb-4 text-gray-100">Pull Requests</h1>
       {error && <p className="text-red-500 mb-3">{error}</p>}
       <div className="space-y-3">
         {prs.map(pr => (
           <div
             key={pr.id}
-            className="bg-white p-3 rounded-md shadow-sm border border-gray-200 flex items-center hover:bg-gray-50 transition ease-in-out duration-200"
+            className="bg-gray-800 p-3 rounded-lg shadow-md flex items-center hover:bg-gray-700 transition ease-in-out duration-200"
           >
-            <GitPullRequest className="mr-3 text-green-500 w-5 h-5" />
+            <GitPullRequest className="mr-3 text-green-400 w-5 h-5" />
             <div className="flex-1">
-              <h2 className="text-base font-semibold">{pr.title}</h2>
-              <p className="text-sm text-gray-500">{pr.repository_name} - {pr.status}</p>
+              <h2 className="text-base font-semibold text-gray-100">{pr.title}</h2>
+              <p className="text-sm text-gray-400">
+                {pr.repository_name} - {pr.status}
+              </p>
             </div>
             <button 
               onClick={() => { setSelectedPR(pr); setView('pr-detail'); }} 
-              className="ml-auto text-sm text-blue-500 hover:text-blue-600 transition"
+              className="ml-auto text-sm text-blue-400 hover:text-blue-300 transition"
             >
               View Details
             </button>

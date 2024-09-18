@@ -1,5 +1,6 @@
 // API base URL
-const API_BASE_URL = 'http://43.204.130.30:7000/';
+// const API_BASE_URL = 'http://43.204.130.30:7000/';
+import API_BASE_URL from './config';
 
 // Utility function to refresh token
 const refreshAccessToken = async () => {
@@ -9,8 +10,9 @@ const refreshAccessToken = async () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${refreshToken}`,
       },
-      body: JSON.stringify({ refresh_token: refreshToken }),
+      body: JSON.stringify({}),
     });
 
     if (!response.ok) {
