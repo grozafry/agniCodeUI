@@ -4,6 +4,7 @@ import { Dashboard, AddRepository } from './AddRepository';
 import PullRequestList from './PullRequestList';
 import PullRequestDetail from './PullRequestDetail';
 import fetchWithAuth from './fetchWithAuth';
+import Metrics from './Metrics';
 
 const App = () => {
   const [view, setView] = useState('login');
@@ -80,6 +81,12 @@ const App = () => {
               >
                 Pull Requests
               </button>
+              <button 
+                onClick={() => setView('metrics')}
+                className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+              >
+                Metrics
+              </button>
               <button
                 onClick={handleLogout}
                 className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-red-500 focus:outline-none focus:text-red-500 transition duration-150 ease-in-out"
@@ -93,7 +100,7 @@ const App = () => {
 
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
-          <div className="border-4 border-dashed border-gray-700 rounded-lg h-96 overflow-auto">
+          
             {view === 'dashboard' && (
               <Dashboard setView={setView} setSelectedRepoId={setSelectedRepoId} />
             )}
@@ -103,7 +110,8 @@ const App = () => {
             {view === 'pr-detail' && selectedPR && (
               <PullRequestDetail pr={selectedPR} setView={setView} />
             )}
-          </div>
+            {view === 'metrics' && <Metrics />}
+         
         </div>
       </main>
 
