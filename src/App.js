@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Auth from './Login';
 import { Dashboard, AddRepository } from './AddRepository';
 import PullRequestList from './PullRequestList';
-import PullRequestDetail from './PullRequestDetail';
 import fetchWithAuth from './fetchWithAuth';
 import Footer from './Footer';
+import Metrics from './Metrics';
 
 const DynamicBackground = () => (
   <div className="fixed inset-0 z-0">
@@ -105,6 +105,12 @@ const App = () => {
                   Pull Requests
                 </button>
                 <button
+                onClick={() => setView('metrics')}
+                className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+                >
+                  Metrics
+                </button>
+                <button
                   onClick={handleLogout}
                   className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-red-500 focus:outline-none focus:text-red-500 transition duration-150 ease-in-out"
                 >
@@ -124,8 +130,8 @@ const App = () => {
               {view === 'prs' && (
                 <PullRequestList setView={setView} setSelectedPR={setSelectedPR} repoId={selectedRepoId} />
               )}
-              {view === 'pr-detail' && selectedPR && (
-                <PullRequestDetail pr={selectedPR} setView={setView} />
+              {view === 'metrics' && (
+                <Metrics />
               )}
             
           </div>
