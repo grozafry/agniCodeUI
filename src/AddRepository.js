@@ -78,7 +78,7 @@ const Dashboard = ({ setView, setSelectedRepoId }) => {
           {repos.map((repo) => (
             <div
               key={repo.id}
-              className="p-4 rounded-lg shadow-md bg-gray-800 hover:bg-gray-700 transition-colors duration-300"
+              className="p-4 bg-opacity-50 rounded-lg shadow-md bg-gray-800 hover:bg-gray-700 transition-colors duration-300"
             >
               
               <h2 className="text-md font-medium mb-4 text-gray-100">{repo.name}</h2>

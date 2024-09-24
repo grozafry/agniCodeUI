@@ -87,7 +87,7 @@ const App = () => {
                     onClick={() => setView('dashboard')}
                     className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 transition duration-300"
                   >
-                    AgniAI Code Reviewer
+                    AgniAI Code Review
                   </button>
                 </div>
               </div>
