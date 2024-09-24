@@ -74,7 +74,7 @@ const Login = ({ setToken, setParentView, setAuthView }) => {
         </div>
 
         <div className="relative z-10 bg-gray-800 bg-opacity-80 p-8 rounded-lg shadow-2xl w-full max-w-md transform transition-all duration-300 ease-in-out hover:scale-105 backdrop-blur-sm">
-          <h2 className="text-3xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">Login to AgniAI</h2>
+          <h2 className="text-xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">Login to AgniAI</h2>
           {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
