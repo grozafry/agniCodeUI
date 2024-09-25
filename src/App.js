@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Auth from './Login';
-import { Dashboard, AddRepository } from './AddRepository';
+import { Dashboard } from './AddRepository';
 import PullRequestList from './PullRequestList';
 import fetchWithAuth from './fetchWithAuth';
 import Footer from './Footer';
