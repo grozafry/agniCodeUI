@@ -29,6 +29,7 @@ const DynamicBackground = () => (
 
 const App = () => {
   const [view, setView] = useState('login');
+  const [authView, setAuthView] = useState('login');
   const [token, setToken] = useState(localStorage.getItem('access_token'));
   const [selectedPR, setSelectedPR] = useState(null);
   const [selectedRepoId, setSelectedRepoId] = useState(null);
@@ -65,13 +66,14 @@ const App = () => {
       localStorage.removeItem('refresh_token');
       setToken(null);
       setView('login');
+      setAuthView('login');
     } catch (error) {
       console.error('Logout failed', error);
     }
   };
 
   if (view === 'login') {
-    return <Auth setToken={setToken} setView={setView} />;
+    return <Auth setToken={setToken} setParentView={setView} setAuthView={setAuthView} authView={authView} />;
   }
 
   return (
