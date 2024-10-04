@@ -14,7 +14,7 @@ const Logo = () => (
       <path d="M10 15 L20 25 L10 35" stroke="url(#gradient)" strokeWidth="3" fill="none" />
       <path d="M70 15 L60 25 L70 35" stroke="url(#gradient)" strokeWidth="3" fill="none" />
       
-      <text x="85" y="35" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="bold" fill="url(#gradient)">Reveu.AI</text>
+      <text x="85" y="35" fontFamily="Arial, sans-serif" fontSize="26" fontWeight="bold" fill="url(#gradient)">Reveu.AI</text>
     </svg>
   );
 

@@ -34,7 +34,7 @@ const Login = ({ setToken, setParentView, setAuthView }) => {
 
   return (
     <div className="w-full max-w-md">
-      <h2 className="text-3xl font-bold mb-6 text-center text-white">Login to Reveu.AI</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-white">Login to Reveu.AI</h2>
       {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
@@ -150,7 +150,7 @@ const Signup = ({ setAuthView, setParentView }) => {
 
   return (
     <div className="w-full max-w-md">
-      <h2 className="text-3xl font-bold mb-6 text-center text-white">Sign Up for Reveu.AI</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-grey-300">Sign Up for Reveu.AI</h2>
       {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <input

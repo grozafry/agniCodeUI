@@ -74,7 +74,7 @@ const LandingPage = ({ setView, token }) => {
       <div className="text-center mb-16">
         <h2 className="text-3xl font-semibold mb-4">Ready to Transform Your Code Review Process?</h2>
         <p className="text-xl mb-8">
-          Join thousands of developers and teams who have elevated their code quality with <b>reveu.ai</b>.
+          Join thousands of developers and teams who have elevated their code quality with <b>Reveu.AI</b>
         </p>
         {token ? (
           <button
