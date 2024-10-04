@@ -18,7 +18,7 @@ const LandingPage = ({ setView, token }) => {
           Revolutionize Your Code Reviews with AI
         </h1>
         <p className="text-2xl mb-8 max-w-3xl mx-auto">
-          <b>reveu.ai</b> supercharges your development workflow with AI-powered code reviews, 
+          <b>Reveu.AI</b> supercharges your development workflow with AI-powered code reviews, 
           catching bugs, ensuring best practices, and boosting team productivity.
         </p>
         {token ? (
