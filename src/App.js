@@ -5,6 +5,8 @@ import PullRequestList from './PullRequestList';
 import fetchWithAuth from './fetchWithAuth';
 import Footer from './Footer';
 import Metrics from './Metrics';
+import LandingPage from './LandingPage';
+import Header from './Header';
 
 const DynamicBackground = () => (
   <div className="fixed inset-0 z-0">
@@ -28,7 +30,7 @@ const DynamicBackground = () => (
 );
 
 const App = () => {
-  const [view, setView] = useState('login');
+  const [view, setView] = useState('landing');
   const [authView, setAuthView] = useState('login');
   const [token, setToken] = useState(localStorage.getItem('access_token'));
   const [selectedPR, setSelectedPR] = useState(null);
@@ -72,73 +74,46 @@ const App = () => {
     }
   };
 
-  if (view === 'login') {
-    return <Auth setToken={setToken} setParentView={setView} setAuthView={setAuthView} authView={authView} />;
-  }
+  const renderContent = () => {
+    switch (view) {
+      case 'landing':
+        return <LandingPage setView={setView} token={token} />;
+      case 'login':
+      case 'signup':
+        return (
+          <Auth 
+            setToken={setToken} 
+            setParentView={setView} 
+            setAuthView={setAuthView} 
+            authView={authView} 
+          />
+        );
+      case 'dashboard':
+        return <Dashboard setView={setView} setSelectedRepoId={setSelectedRepoId} />;
+      case 'prs':
+        return <PullRequestList setView={setView} setSelectedPR={setSelectedPR} repoId={selectedRepoId} />;
+      case 'metrics':
+        return <Metrics />;
+      default:
+        return <LandingPage setView={setView} token={token} />;
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col text-gray-100 relative overflow-hidden">
       <DynamicBackground />
       <div className="flex flex-col flex-grow relative z-10">
-        <nav className="bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg shadow-lg">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <button 
-                    onClick={() => setView('dashboard')}
-                    className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 transition duration-300"
-                  >
-                    AgniAI Code Review
-                  </button>
-                </div>
-              </div>
-              <div className="flex items-center">
-                <button
-                  onClick={() => setView('dashboard')}
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
-                >
-                  Repositories
-                </button>
-                <button 
-                  onClick={() => {setSelectedRepoId(null); setView('prs')}}
-                  className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
-                >
-                  Pull Requests
-                </button>
-                <button
-                onClick={() => setView('metrics')}
-                className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
-                >
-                  Metrics
-                </button>
-                <button
-                  onClick={handleLogout}
-                  className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-red-500 focus:outline-none focus:text-red-500 transition duration-150 ease-in-out"
-                >
-                  Logout
-                </button>
-              </div>
-            </div>
-          </div>
-        </nav>
-
+        <Header 
+          token={token} 
+          setView={setView} 
+          handleLogout={handleLogout} 
+          setSelectedRepoId={setSelectedRepoId} 
+        />
         <main className="flex-grow max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-8">
           <div className="px-4 py-6 sm:px-0">
-            
-              {view === 'dashboard' && (
-                <Dashboard setView={setView} setSelectedRepoId={setSelectedRepoId} />
-              )}
-              {view === 'prs' && (
-                <PullRequestList setView={setView} setSelectedPR={setSelectedPR} repoId={selectedRepoId} />
-              )}
-              {view === 'metrics' && (
-                <Metrics />
-              )}
-            
+            {renderContent()}
           </div>
         </main>
-
         <Footer />
       </div>
     </div>

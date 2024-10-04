@@ -1,19 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import API_BASE_URL from './config';
-import Footer from './Footer';
-
-const Header = () => (
-  <header className="bg-gray-900 py-4">
-    {/* <div className="text-center text-white text-2xl font-bold">AgniAI</div> */}
-    
-                  <button 
-                    className="w-full text-center text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 transition duration-300"
-                  >
-                    AgniAI Code Review
-                  </button>
-                
-  </header>
-);
 
 const Login = ({ setToken, setParentView, setAuthView }) => {
   const [username, setUsername] = useState('');
@@ -47,81 +33,51 @@ const Login = ({ setToken, setParentView, setAuthView }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between">
-      <Header />
-      <div className="flex-grow flex items-center justify-center bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
-        {/* Dynamic background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMDAwMDAwMTAiPjwvcmVjdD4KPHBhdGggZD0iTTAgNUw1IDBaTTYgNEw0IDZaTS0xIDFMMSAtMVoiIHN0cm9rZT0iIzIwMjAyMDIwIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+')] opacity-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 opacity-30 animate-pulse"></div>
+    <div className="w-full max-w-md">
+      <h2 className="text-3xl font-bold mb-6 text-center text-white">Login to reveu.ai</h2>
+      {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full p-3 bg-gray-800 bg-opacity-50 rounded-md border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+            required
+          />
         </div>
-
-        {/* Floating shapes */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute bg-white bg-opacity-10 rounded-full"
-              style={{
-                width: `${Math.random() * 10 + 5}px`,
-                height: `${Math.random() * 10 + 5}px`,
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animation: `float ${Math.random() * 10 + 5}s infinite linear`
-              }}
-            ></div>
-          ))}
+        <div>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 bg-gray-800 bg-opacity-50 rounded-md border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+            required
+          />
         </div>
-
-        <div className="relative z-10 bg-gray-800 bg-opacity-80 p-8 rounded-lg shadow-2xl w-full max-w-md transform transition-all duration-300 ease-in-out hover:scale-105 backdrop-blur-sm">
-          <h2 className="text-xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">Login to AgniAI</h2>
-          {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
-                required
-              />
-            </div>
-            <div>
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
-                required
-              />
-            </div>
-            <button 
-              type="submit"
-              className="w-full p-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white rounded-md hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200 transform hover:scale-105"
-            >
-              Login
-            </button>
-          </form>
-          <p className="mt-6 text-center text-gray-400">
-            Don't have an account?{' '}
-            <button 
-              className="text-purple-400 hover:text-purple-300 underline focus:outline-none transition duration-200"
-              onClick={() => setAuthView('signup')}
-            >
-              Sign up
-            </button>
-          </p>
-        </div>
-      </div>
-      <Footer />
+        <button 
+          type="submit"
+          className="w-full p-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white rounded-md hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200 transform hover:scale-105"
+        >
+          Login
+        </button>
+      </form>
+      <p className="mt-6 text-center text-gray-400">
+        Don't have an account?{' '}
+        <button 
+          className="text-purple-400 hover:text-purple-300 underline focus:outline-none transition duration-200"
+          onClick={() => setAuthView('signup')}
+        >
+          Sign up
+        </button>
+      </p>
     </div>
   );
 };
 
-
-const Signup = ({ setAuthView }) => {
+const Signup = ({ setAuthView, setParentView }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -156,12 +112,10 @@ const Signup = ({ setAuthView }) => {
     }
     
     return null;
-};
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Validate passwords match
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
@@ -182,11 +136,12 @@ const Signup = ({ setAuthView }) => {
         },
         body: JSON.stringify({ username, email, password, organizationName, organizationType }),
       });
+      const data = await response.json();
       if (response.status === 201) {
         setAuthView('login');
       } else {
-        const data = await response.json();
-        throw new Error(data.message || 'Signup failed');
+        // const data = await response.json();
+        setError(data.message || `Signup failed: ${response.statusText}`);
       }
     } catch (error) {
       setError('Error creating account');
@@ -194,101 +149,96 @@ const Signup = ({ setAuthView }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between">
-      <Header />
-      <div className="flex-grow flex items-center justify-center bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
-        <div className="relative z-10 bg-gray-800 bg-opacity-80 p-8 rounded-lg shadow-2xl w-full max-w-md transform transition-all duration-300 ease-in-out hover:scale-105 backdrop-blur-sm">
-          <h2 className="text-xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">Sign Up</h2>
-          {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
-                required
-              />
-            </div>
-            <div>
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
-                required
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                placeholder="Organization Name"
-                value={organizationName}
-                onChange={(e) => setOrganizationName(e.target.value)}
-                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
-                required
-              />
-            </div>
-            <div>
-              <select
-                value={organizationType}
-                onChange={(e) => setOrganizationType(e.target.value)}
-                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
-                required
-              >
-                <option value="">Select Organization Size</option>
-                <option value="1-5">1-5 members</option>
-                <option value="6-10">6-10 members</option>
-                <option value="11-50">11-50 members</option>
-                <option value="51-100">51-100 members</option>
-                <option value="100+">100+ members</option>
-              </select>
-            </div>
-            <div>
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
-                required
-              />
-            </div>
-            <div>
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
-                required
-              />
-            </div>
-            <button 
-              type="submit"
-              className="w-full p-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white rounded-md hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200 transform hover:scale-105"
-            >
-              Sign Up
-            </button>
-          </form>
-        </div>
-      </div>
-      <Footer />
+    <div className="w-full max-w-md">
+      <h2 className="text-3xl font-bold mb-6 text-center text-white">Sign Up for reveu.ai</h2>
+      {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="w-full p-3 bg-gray-800 bg-opacity-50 rounded-md border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full p-3 bg-gray-800 bg-opacity-50 rounded-md border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Organization Name"
+          value={organizationName}
+          onChange={(e) => setOrganizationName(e.target.value)}
+          className="w-full p-3 bg-gray-800 bg-opacity-50 rounded-md border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+          required
+        />
+        <select
+          value={organizationType}
+          onChange={(e) => setOrganizationType(e.target.value)}
+          className="w-full p-3 bg-gray-800 bg-opacity-50 rounded-md border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+          required
+        >
+          <option value="">Select Organization Size</option>
+          <option value="1-5">1-5 members</option>
+          <option value="6-10">6-10 members</option>
+          <option value="11-50">11-50 members</option>
+          <option value="51-100">51-100 members</option>
+          <option value="100+">100+ members</option>
+        </select>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full p-3 bg-gray-800 bg-opacity-50 rounded-md border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          className="w-full p-3 bg-gray-800 bg-opacity-50 rounded-md border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+          required
+        />
+        <button 
+          type="submit"
+          className="w-full p-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white rounded-md hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200 transform hover:scale-105"
+        >
+          Sign Up
+        </button>
+      </form>
+      <p className="mt-6 text-center text-gray-400">
+        Already have an account?{' '}
+        <button 
+          className="text-purple-400 hover:text-purple-300 underline focus:outline-none transition duration-200"
+          onClick={() => setAuthView('login')}
+        >
+          Log in
+        </button>
+      </p>
     </div>
   );
 };
-// Auth Component
-const Auth = ({ setToken, setView }) => {
-  const [authView, setAuthView] = useState('login');
+
+const Auth = ({ setToken, setParentView, authView, setAuthView }) => {
   return (
-    <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-between">
-      {authView === 'login' ? (
-        <Login setToken={setToken} setParentView={setView} setAuthView={setAuthView} />
-      ) : (
-        <Signup setAuthView={setAuthView} />
-      )}
+    <div className="flex-grow flex items-center justify-center  relative overflow-hidden">
+      {/* Dynamic background elements */}
+
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-md px-4 py-8">
+        {authView === 'login' ? (
+          <Login setToken={setToken} setParentView={setParentView} setAuthView={setAuthView} />
+        ) : (
+          <Signup setAuthView={setAuthView} setParentView={setParentView} />
+        )}
+      </div>
     </div>
   );
 };
